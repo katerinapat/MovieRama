@@ -1,7 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Movies by <%= current_user == @user ? "you" : @user.first_name  %></h1>
-
+<p>Sort by: Likes |Hates | <%= link_to("Date", sort_date_movie_path(@movies)) %> </p>
+  <h5>Sorted by Likes | Hates | Date</h5>
   <% @movies.each do |movie|%> 
     <div class="col-lg-12">
       <div class="thumbnail">

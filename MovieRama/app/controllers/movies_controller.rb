@@ -71,6 +71,11 @@ class MoviesController < ApplicationController
     redirect_to movies_path
   end
 
+  def dates
+    @movies = Movie.all.order(:created_at => :desc)
+    render :index
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_movie

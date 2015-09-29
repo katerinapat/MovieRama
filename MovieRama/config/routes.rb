@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {sessions: "users/sessions", registration: "registration" }
   
   get 'users/:id', to: 'users#show', as: :profile
+
+  # get 'movies/sort', to: 'movies#dates', as: :sort_date
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -21,6 +23,7 @@ Rails.application.routes.draw do
       member do
         get 'like' => 'movies#upvote' 
         get 'hates' => 'movies#downvote'
+        get 'sort_date' => 'movies#dates'
       end
   
     end

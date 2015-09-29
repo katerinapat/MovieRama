@@ -1,6 +1,9 @@
 <!-- <p id="notice"><%= notice %></p> -->
 
 <h1>Listing Movies</h1>
+
+<p>Sort by: Likes | Hates | <%= link_to("Date", sort_date_movie_path(@movies)) %> </p>
+
 <div class="col-lg-8">
   <% @movies.each do |movie|%> 
     <div class="col-lg-12">
