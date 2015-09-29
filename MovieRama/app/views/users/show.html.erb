@@ -13,8 +13,8 @@
 
           <ul class="list-inline">
             <% if current_user != movie.user %>
-              <li> <span><%= movie.get_upvotes.size %></span> <%= link_to("Like ", like_movie_path(movie)) %> | </li>
-              <li> <span><%= movie.get_downvotes.size %></span> <%= link_to(" Hate ", hates_movie_path(movie)) %></li>
+              <li> <span class="badge" ><%= movie.get_upvotes.size %></span> <%= link_to("Like ", like_movie_path(movie)) %> | </li>
+              <li> <span class="badge" ><%= movie.get_downvotes.size %></span> <%= link_to(" Hate ", hates_movie_path(movie)) %></li>
             <% end %>
           </ul>
           
