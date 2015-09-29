@@ -3,17 +3,13 @@
 <head>
   <title>MovieRama</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body class="container">
+<body>
 
-	<p class="notice"><%= notice %></p>
-	<p class="alert"><%= alert %></p>
-	
-	<ul class="hmenu pull-right list-inline">
-		<%= render 'devise/menu/registration_items' %>
-		<%= render 'devise/menu/login_items' %>
-	</ul>
+ <p class="notice"><%= notice %></p>
+ <p class="alert"><%= alert %></p>
 
 <%= yield %>
 
