@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Movies by <%= current_user == @user ? "you" : @user.first_name  %></h1>
+
+  <% @movies.each do |movie|%> 
+    <div class="col-lg-12">
+      <div class="thumbnail">
+        <div class="caption">
+          <h3><%= movie.title %></h3>
+         <p> Posted by <%= link_to movie.user.first_name, profile_path(movie.user_id)  %> <%= time_ago_in_words(movie.created_at) + ' ago' %> </p>
+
+          <p>  <%= movie.description %> </p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+<%= link_to 'Back', movies_path %>
