@@ -17,17 +17,13 @@ Rails.application.routes.draw do
   # Example resource route (maps HTTP verbs to controller actions automatically):
   resources :users
 
-  # Example resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
+    resources :movies do
+      member do
+        get 'like' => 'movies#upvote' 
+        get 'hates' => 'movies#downvote'
+      end
+  
+    end
 
   # Example resource route with sub-resources:
   #   resources :products do

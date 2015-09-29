@@ -10,6 +10,13 @@
          <p> Posted by <%= link_to movie.user.first_name, profile_path(movie.user_id)  %> <%= time_ago_in_words(movie.created_at) + ' ago' %> </p>
 
           <p>  <%= movie.description %> </p>
+          <ul class="list-inline">
+            <% if current_user != movie.user %>
+              <li> <span><%= movie.get_upvotes.size %></span> <%= link_to("Like ", like_movie_path(movie)) %> | </li>
+              <li> <span><%= movie.get_downvotes.size %></span> <%= link_to(" Hate ", hates_movie_path(movie)) %></li>
+            <% end %>
+          </ul>
+          
         </div>
       </div>
     </div>
