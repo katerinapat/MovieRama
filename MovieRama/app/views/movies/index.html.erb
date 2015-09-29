@@ -1,0 +1,20 @@
+<!-- <p id="notice"><%= notice %></p> -->
+
+<h1>Listing Movies</h1>
+<div class="col-lg-8">
+  <% @movies.each do |movie|%> 
+    <div class="col-lg-12">
+      <div class="thumbnail">
+        <div class="caption">
+          <h3><%= movie.title %></h3>
+         <p> Posted by <%= link_to movie.user.first_name, profile_path(movie.user_id)  %> <%= time_ago_in_words(movie.created_at) + ' ago' %> </p>
+
+          <p>  <%= movie.description %> </p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+<% if user_signed_in? %>
+<%= link_to 'New Movie', new_movie_path, :class => "btn btn-success" %>
+<% end %>
