@@ -1,27 +1,27 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Movies by <%= current_user == @user ? "you" : @user.first_name  %></h1>
-<p>Sort by: Likes |Hates | <%= link_to("Date", sort_date_movie_path(@movies)) %> </p>
-  <h5>Sorted by Likes | Hates | Date</h5>
-  <% @movies.each do |movie|%> 
-    <div class="col-lg-12">
-      <div class="thumbnail">
-        <div class="caption">
-          <h3><%= movie.title %></h3>
-         <p> Posted by <%= link_to movie.user.first_name, profile_path(movie.user_id)  %> <%= time_ago_in_words(movie.created_at) + ' ago' %> </p>
+<p>Sort by: <%= link_to("Likes", sort_like_movie_path(@movies)) %> | <%= link_to("Hates", sort_hate_movie_path(@movies)) %> | <%= link_to("Date", sort_date_movie_path(@movies)) %> </p>
 
-          <p>  <%= movie.description %> </p>
+<% @movies.each do |movie|%> 
+<div class="col-lg-12">
+  <div class="thumbnail">
+    <div class="caption">
+      <h3><%= movie.title %></h3>
+     <p> Posted by <%= link_to movie.user.first_name, profile_path(movie.user_id)  %> <%= time_ago_in_words(movie.created_at) + ' ago' %> </p>
 
-          <ul class="list-inline">
-            <% if current_user != movie.user %>
-              <li> <span class="badge" ><%= movie.get_upvotes.size %></span> <%= link_to("Like ", like_movie_path(movie)) %> | </li>
-              <li> <span class="badge" ><%= movie.get_downvotes.size %></span> <%= link_to(" Hate ", hates_movie_path(movie)) %></li>
-            <% end %>
-          </ul>
-          
-        </div>
-      </div>
+      <p>  <%= movie.description %> </p>
+
+      <ul class="list-inline">
+        <% if current_user != movie.user %>
+          <li> <span class="badge" ><%= movie.get_upvotes.size %></span> <%= link_to("Like ", like_movie_path(movie)) %> | </li>
+          <li> <span class="badge" ><%= movie.get_downvotes.size %></span> <%= link_to(" Hate ", hates_movie_path(movie)) %></li>
+        <% end %>
+      </ul>
+      
     </div>
-  <% end %>
+  </div>
+</div>
+<% end %>
 
 <%= link_to 'Back', movies_path %>

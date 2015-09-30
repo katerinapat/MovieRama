@@ -76,6 +76,16 @@ class MoviesController < ApplicationController
     render :index
   end
 
+  def likes
+    @movies = Movie.all.order(:cached_votes_up => :desc)
+    render :index
+  end
+
+  def hates
+    @movies = Movie.all.order(:cached_votes_down => :desc)
+    render :index
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_movie

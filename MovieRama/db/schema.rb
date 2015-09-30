@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150929213818) do
+ActiveRecord::Schema.define(version: 20150929235305) do
 
   create_table "movies", force: :cascade do |t|
     t.string   "title"
@@ -19,9 +19,14 @@ ActiveRecord::Schema.define(version: 20150929213818) do
     t.integer  "likes"
     t.integer  "hates"
     t.integer  "user_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.integer  "cached_votes_up",   default: 0
+    t.integer  "cached_votes_down", default: 0
   end
+
+  add_index "movies", ["cached_votes_down"], name: "index_movies_on_cached_votes_down"
+  add_index "movies", ["cached_votes_up"], name: "index_movies_on_cached_votes_up"
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name"

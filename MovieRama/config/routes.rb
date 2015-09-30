@@ -24,6 +24,9 @@ Rails.application.routes.draw do
         get 'like' => 'movies#upvote' 
         get 'hates' => 'movies#downvote'
         get 'sort_date' => 'movies#dates'
+        get 'sort_like' => 'movies#likes'
+        get 'sort_hate' => 'movies#hates'
+
       end
   
     end
