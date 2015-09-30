@@ -1,0 +1,33 @@
+<!-- <p id="notice"><%= notice %></p> -->
+
+<h1>Listing Movies</h1>
+
+<p>Sort by: <%= link_to("Likes", sort_like_movie_path(@movies)) %> | <%= link_to("Hates", sort_hate_movie_path(@movies)) %> | <%= link_to("Date", sort_date_movie_path(@movies)) %> </p>
+
+<div class="col-lg-8">
+  <% @movies.each do |movie|%> 
+    <div class="col-lg-12">
+      <div class="thumbnail">
+        <div class="caption">
+          <h3><%= movie.title %></h3>
+          <p> Posted by <%= link_to movie.user.first_name, profile_path(movie.user_id)  %> <%= time_ago_in_words(movie.created_at) + ' ago' %> </p>
+
+          <p>  <%= movie.description %> </p>
+          <ul class="list-inline">
+            <% if current_user == movie.user %>
+              <li> <span class="badge"> <%= pluralize(movie.get_upvotes.size, "Like") %> </span> </li>
+              <li> <span class="badge"> <%= pluralize(movie.get_downvotes.size, "Like") %> </span></li>
+            <% else %> 
+              <li> <span class="badge"><%= movie.get_upvotes.size %></span> <%= link_to("Like ", like_movie_path(movie)) %> | </li>
+              <li> <span class="badge" ><%= movie.get_downvotes.size %></span> <%= link_to(" Hate ", hates_movie_path(movie)) %></li>
+            <% end %>
+          </ul>
+          
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+<% if user_signed_in? %>
+<%= link_to 'New Movie', new_movie_path, :class => "btn btn-success" %>
+<% end %>
